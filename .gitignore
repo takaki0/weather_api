@@ -1,0 +1,7 @@
+/mysql/data/*
+/source/*
+!/source/.gitignore
+.pytest_cache
+.env
+config.py
+memo.txt

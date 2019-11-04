@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Script
+injector
+pytz
+pytest
+pytest-cov
+pytest-xdist
+selenium
