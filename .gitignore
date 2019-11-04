@@ -1,7 +1,9 @@
+.idea
 /mysql/data/*
-/source/*
+__pycache__
 !/source/.gitignore
 .pytest_cache
 .env
 config.py
 memo.txt
+hello.py
