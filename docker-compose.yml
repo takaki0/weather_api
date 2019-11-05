@@ -1,18 +1,12 @@
 version: '3'
 services:
-#  nginx:
-#    image: nginx:1.15
-#    ports:
-#      - 80:80
-#    volumes:
-#      - ./source:/usr/share/nginx/html
-#      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-#  php-fpm:
-#    build: ./php-fpm
-#    ports:
-#      - 8000:8000
-#    volumes:
-#      - ./source:/var/www/html
+  nginx:
+    image: nginx:1.15
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
   python3:
     build: ./python3
     ports:
@@ -20,7 +14,8 @@ services:
     volumes:
       - ./source:/var/www/html
     tty: true
-    working_dir: /var/www/html
+    privileged: true
+    working_dir: /var/www/html/application
 
   mysql:
       image: mysql:8.0
@@ -36,6 +31,7 @@ services:
         - ./mysql/data:/var/lib/mysql
         - ./mysql/init:/docker-entrypoint-initdb.d
         - ./mysql/conf:/etc/mysql/conf.d
+
   redis:
     image: redis:latest
     ports:

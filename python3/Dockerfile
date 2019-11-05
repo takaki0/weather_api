@@ -1,13 +1,9 @@
 FROM python:3.7
-#FROM ubuntu:18.04
 
 #インストール
-#RUN apt-get update
-#RUN apt-get install -y git
-#RUN apt-get install -y iproute2
-#RUN apt-get install -y iputils-ping
-#RUN apt-get install -y sudo
-#RUN sudo apt install python3.7
+RUN apt-get update
+RUN apt-get install -y sudo
+RUN sudo apt-get install -y vim
 
 #geckodriverが必要か。
 
@@ -16,4 +12,8 @@ WORKDIR /var/www/html/
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-# RUN pip install pipenv
+
+WORKDIR /var/www/html/application
+
+# CMD ["/sbin/init"]
+CMD ["gunicorn", "server:app", "-b", "0.0.0.0:5000"]
