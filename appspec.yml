@@ -7,8 +7,8 @@ hooks:
   BeforeInstall:
     - location: flask_app_shutdown.sh
       timeout: 180
-      runas: ec2-user
+      runas: root
   ApplicationStart:
     - location: codedeploy_start.sh
       timeout: 180
-      runas: ec2-user
+      runas: root
