@@ -1,0 +1,9 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/flask_app
+hooks:
+  ApplicationStart:
+    - location: /home/ec2-user/flask_app/codedeploy_start.sh
+      timeout: 180
