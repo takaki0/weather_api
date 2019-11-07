@@ -1,4 +1,5 @@
 .idea
+.DS_Store
 /mysql/data/*
 __pycache__
 !/source/.gitignore
@@ -7,3 +8,9 @@ __pycache__
 config.py
 memo.txt
 hello.py
+
+source.tgz
+
+node_modules
+source/react/public/bundle.js
+source/react/public/bundle.css

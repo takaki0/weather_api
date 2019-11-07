@@ -24,7 +24,8 @@ class TestWeatherApi(object):
     def test_get_condition_api_by_city_wrong_api_key(self):
         url = "http://0.0.0.0:5000/weather/get_condition_by_city/xxxxxxxx"
         with urllib.request.urlopen(url) as response:
-            assert json.loads(response.read()) == {'status': 401, 'message': 'access denied'}
+            assert json.loads(response.read()) == {'status': 401, 'message': 'access denied',
+                                                   'weather_conditions': [], 'location': {}}
 
     # ApiKey指定なし
     def test_get_condition_api_by_city_no_api_key(self):
@@ -44,7 +45,8 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # from_date 指定なし
     def test_get_condition_api_by_city_no_from_date(self):
@@ -57,7 +59,8 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # to_date 指定なし
     def test_get_condition_api_by_city_no_to_date(self):
@@ -70,14 +73,16 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # パラメータなし
     def test_get_condition_api_by_city_no_param(self):
         api_key = app.config.get('WEATHER_API_KEY_DARKSKY')
         url = "http://0.0.0.0:5000/weather/get_condition_by_city/" + api_key
         with urllib.request.urlopen(url) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # 日付不正
     def test_get_condition_api_by_city_invalid_date(self):
@@ -114,7 +119,8 @@ class TestWeatherApi(object):
     def test_get_condition_api_by_latlng_wrong_api_key(self):
         url = "http://0.0.0.0:5000/weather/get_condition_by_latlng/xxxxxxxx"
         with urllib.request.urlopen(url) as response:
-            assert json.loads(response.read()) == {'status': 401, 'message': 'access denied'}
+            assert json.loads(response.read()) == {'status': 401, 'message': 'access denied',
+                                                   'weather_conditions': [], 'location': {}}
 
     # ApiKey指定なし
     def test_get_condition_api_by_latlng_no_api_key(self):
@@ -135,7 +141,8 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
         param = {
             'latitude': '35',
             'longitude': '',
@@ -144,7 +151,8 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # from_date 指定なし
     def test_get_condition_api_by_latlng_no_from_date(self):
@@ -158,7 +166,8 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # to_date 指定なし
     def test_get_condition_api_by_latlng_no_to_date(self):
@@ -172,14 +181,16 @@ class TestWeatherApi(object):
         }
         param_string = urllib.parse.urlencode(param)
         with urllib.request.urlopen(url + '?' + param_string) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # パラメータなし
     def test_get_condition_api_by_latlng_no_param(self):
         api_key = app.config.get('WEATHER_API_KEY_DARKSKY')
         url = "http://0.0.0.0:5000/weather/get_condition_by_latlng/" + api_key
         with urllib.request.urlopen(url) as response:
-            assert json.loads(response.read()) == {'status': 500, 'weather_conditions': []}
+            assert json.loads(response.read()) == {'status': 500, 'message': 'internal error',
+                                                   'weather_conditions': [], 'location': {}}
 
     # 日付不正
     def test_get_condition_api_by_latlng_invalid_date(self):

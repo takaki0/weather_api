@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from abc import ABCMeta, abstractmethod
 from injector import Injector, inject, Module
-from typing import List
+from typing import List, Dict
 
 from flask_app.models.weather import WeatherCondition
 
@@ -18,7 +18,7 @@ class WeatherRepository(metaclass=ABCMeta):
 
     @abstractmethod
     def get_past_condition_by_city(self, city_name: str, from_date: date = None, to_date: date = None) \
-            -> (str, List[WeatherCondition]):
+            -> (str, List[WeatherCondition], Dict[str, float]):
         pass
 
     @abstractmethod

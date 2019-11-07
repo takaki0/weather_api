@@ -1,0 +1,13 @@
+$text-color: #444;
+
+body {
+  background-color: #eee;
+  color: $text-color;
+
+}
+
+@import "App";
+@import "SearchForm";
+@import "Conditions";
+@import "Map";
+@import "Loader";
