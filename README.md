@@ -32,11 +32,11 @@ http://ec2-3-112-209-42.ap-northeast-1.compute.amazonaws.com/
 ## 使用技術
 - 言語/フレームワーク
   - サーバーサイド
-    - Python237 / Flask
+    - Python 3.7 / Flask 1.1
     - Golang (予定)
     - Kotlin (予定)
   - フロント
-  - React
+  - React 15.6
 - 開発環境
     - Docker for Mac
     - Pycharm, WebStorm
