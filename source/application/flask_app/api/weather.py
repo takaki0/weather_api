@@ -12,7 +12,7 @@ def api_key_required(api_func):
     def inner(*args, **kwargs):
         api_key = provider.get_weather_repository().get_repository_api_key()
         if kwargs['api_key'] != api_key:
-            return json.dumps({'status': 401, 'message': 'access denied'})
+            return json.dumps({'status': 401, 'message': 'access denied', 'weather_conditions': [], 'location': {}})
         return api_func(*args, **kwargs)
     return inner
 
@@ -24,9 +24,10 @@ def get_condition_api_by_city(api_key):
     city_name = request.args.get('city_name')
     from_date_str = request.args.get('from_date')
     to_date_str = request.args.get('to_date')
+    app.logger.debug(city_name)
 
     if not (city_name and from_date_str and to_date_str):
-        return json.dumps({'status': 500, 'weather_conditions': []})
+        return json.dumps({'status': 500, 'message': 'internal error', 'weather_conditions': [], 'location': {}})
     from_date = datetime.strptime(from_date_str, '%Y-%m-%d').date()
     to_date = datetime.strptime(to_date_str, '%Y-%m-%d').date()
 
@@ -43,7 +44,7 @@ def get_condition_api_by_latlng(api_key):
     to_date_str = request.args.get('to_date')
 
     if not (latitude and longitude and from_date_str and to_date_str):
-        return json.dumps({'status': 500, 'weather_conditions': []})
+        return json.dumps({'status': 500, 'message': 'internal error', 'weather_conditions': [], 'location': {}})
     latitude = float(latitude)
     longitude = float(longitude)
     from_date = datetime.strptime(from_date_str, '%Y-%m-%d').date()
@@ -56,7 +57,7 @@ def get_conditions(method: str, **kwargs):
 
     weather_repository = provider.get_weather_repository()
     if method == 'by_city':
-        status, weather_conditions = \
+        status, weather_conditions, location = \
             weather_repository.get_past_condition_by_city(city_name=kwargs['city_name'],
                                                           from_date=kwargs['from_date'],
                                                           to_date=kwargs['to_date'])
@@ -66,15 +67,17 @@ def get_conditions(method: str, **kwargs):
                                                             longitude=kwargs['longitude'],
                                                             from_date=kwargs['from_date'],
                                                             to_date=kwargs['to_date'])
+        location = { 'latitude': kwargs['latitude'], 'longitude': kwargs['longitude'] };
 
     if status != 'success':
-        return json.dumps({'status': 500, 'weather_conditions': []})
+        return json.dumps({'status': 500, 'message': 'internal error', 'weather_conditions': [], 'location': location})
 
     list_weather_condition = []
     for weather_condition in weather_conditions:
         list_weather_condition.append(weather_condition.get_myself_by_dict())
 
-    return json.dumps({'status': 200, 'weather_conditions': list_weather_condition}, default=util.date_handler)
+    return json.dumps({'status': 200, 'message': '', 'weather_conditions': list_weather_condition, 'location': location},
+                      default=util.date_handler)
 
 
 

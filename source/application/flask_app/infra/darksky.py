@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from typing import List
+from typing import List, Dict
 import json
 import urllib
 import pprint
@@ -24,19 +24,22 @@ class DarkSkyRepository(WeatherRepository):
         return app.config.get('WEATHER_API_KEY_DARKSKY')
 
     def get_past_condition_by_city(self, city_name: str, from_date: date = None, to_date: date = None) \
-            -> (str, List[WeatherCondition]):
+            -> (str, List[WeatherCondition], Dict[str, float]):
 
         if not city_name:
-            return 'no city name', []
+            return 'no city name', [], {}
 
         status, location = util.to_latlng(city_name=city_name)
         if status == 'zero_results':
-            return 'not exist city name', []
+            return 'not exist city name', [], {}
         elif status == 'access failure':
-            return 'access failure', []
+            return 'access failure', [], {}
 
-        return self.get_past_condition_by_latlng(latitude=location['latitude'], longitude=location['longitude'],
+        # return self.get_past_condition_by_latlng(latitude=location['latitude'], longitude=location['longitude'],
+        #                                          from_date=from_date, to_date=to_date)
+        err, weather_conditions = self.get_past_condition_by_latlng(latitude=location['latitude'], longitude=location['longitude'],
                                                  from_date=from_date, to_date=to_date)
+        return err, weather_conditions, location
 
     def get_past_condition_by_latlng(self, latitude: float, longitude: float,
                                      from_date: date = None, to_date: date = None) \

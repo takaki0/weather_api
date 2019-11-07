@@ -65,9 +65,13 @@ def date_handler(obj):
 
 def get_response_from_json_api(url: str):
     try:
-        with urllib.request.urlopen(url) as response:
+        req = urllib.request.Request(url)
+        req.add_header('Referer', 'http://www.ossan.cf/')
+        with urllib.request.urlopen(req) as response:
             return '', json.loads(response.read())
     except urllib.error.HTTPError:
         return 'HTTP Error', {}
     except urllib.error.URLError:
         return 'URL Error', {}
+    except Exception:
+        return 'Emergency Error', {}

@@ -1,0 +1,27 @@
+.search-form {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+$form-font-size: 22px;
+$input-padding: 3px 3px 3px;
+
+.place-input {
+  font-size: $form-font-size;
+  width: 200px;
+  padding: $input-padding;
+}
+
+.date-input {
+  font-size: $form-font-size;
+  width: 150px;
+  padding: $input-padding;
+}
+.submit-button {
+  -webkit-appearance: none;
+  font-size: $form-font-size;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+

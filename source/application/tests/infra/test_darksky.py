@@ -1,6 +1,7 @@
 from datetime import datetime, date
 import pytest
 from unittest import mock
+from typing import Dict
 
 from flask_app.infra.darksky import DarkSkyRepository
 from flask_app.models.weather import WeatherCondition
@@ -49,26 +50,29 @@ class TestDarkSkyRepository(object):
     ### get_past_condition_by_city ###
     # 都市名　空白
     def test_get_past_condition_by_city_no_city(self):
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="", from_date=date.today(),
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="", from_date=date.today(),
                                                               to_date=date.today())
         assert err == 'no city name'
         assert conditions == []
+        assert location == {}
 
     # 都市名　存在しない
     def test_get_past_condition_by_city_not_exist_city(self):
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="ほげほげ", from_date=date.today(),
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="ほげほげ", from_date=date.today(),
                                                               to_date=date.today())
         assert err == 'not exist city name'
         assert conditions == []
+        assert location == {}
 
     # 都市 > 緯度・経度変換(googleMapエラー）
     def test_get_past_condition_by_city_to_latlng_failure(self):
         mock_to_latlng = self.patcher1.start()
         mock_to_latlng.return_value = 'access failure', {}
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date.today(),
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date.today(),
                                                               to_date=date.today())
         assert err == 'access failure'
         assert conditions == []
+        assert location == {}
         self.patcher1.stop()
 
     # 期間　開始日None
@@ -77,10 +81,11 @@ class TestDarkSkyRepository(object):
         if mock_use == 'True':
             self.dsr.get_response_from_darksky_api = mock.MagicMock(return_value=('', dark_sky_dummy_data))
 
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="東京", from_date=None,
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="東京", from_date=None,
                                                               to_date=date.today())
         assert err == 'success'
         assert isinstance(conditions[0], WeatherCondition)
+        # assert isinstance(location, Dict[str, float])
 
     # 期間　終了日None
     def test_get_past_condition_by_city_to_date_none(self, request, dark_sky_dummy_data):
@@ -90,7 +95,7 @@ class TestDarkSkyRepository(object):
             mock_get_response_from_darksky_api = self.patcher2.start()
             mock_get_response_from_darksky_api.return_value = ('', dark_sky_dummy_data)
 
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date.today(),
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date.today(),
                                                               to_date=None)
         assert err == 'success'
         assert isinstance(conditions[0], WeatherCondition)
@@ -106,7 +111,7 @@ class TestDarkSkyRepository(object):
             mock_get_response_from_darksky_api = self.patcher2.start()
             mock_get_response_from_darksky_api.return_value = ('', dark_sky_dummy_data)
 
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date.today(),
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date.today(),
                                                               to_date=date.today())
         assert err == 'success'
         assert isinstance(conditions[0], WeatherCondition)
@@ -123,7 +128,7 @@ class TestDarkSkyRepository(object):
             mock_get_response_from_darksky_api = self.patcher2.start()
             mock_get_response_from_darksky_api.return_value = ('', dark_sky_dummy_data)
 
-        err, conditions = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date(2019, 11, 1),
+        err, conditions, location = self.dsr.get_past_condition_by_city(city_name="東京", from_date=date(2019, 11, 1),
                                                               to_date=date(2019, 11, 30))
         assert err == 'success'
         assert isinstance(conditions[0], WeatherCondition)
