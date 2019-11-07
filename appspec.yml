@@ -4,6 +4,10 @@ files:
   - source: /
     destination: /home/ec2-user/flask_app
 hooks:
+  BeforeInstall:
+    - location: flask_app_shutdown.sh
+      timeout: 180
+      runas: ec2-user
   ApplicationStart:
     - location: codedeploy_start.sh
       timeout: 180
