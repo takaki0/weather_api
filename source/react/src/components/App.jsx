@@ -63,7 +63,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <h1>気象情報検索　Ver2.001</h1>
+        <h1>気象情報検索　Ver2.005</h1>
         {/* eslint-disable-next-line react/jsx-no-target-blank */}
         <h4>
           <a
