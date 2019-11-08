@@ -28104,7 +28104,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'h1',
           null,
-          '\u6C17\u8C61\u60C5\u5831\u691C\u7D22\u30002.'
+          '\u6C17\u8C61\u60C5\u5831\u691C\u7D22\u3000Ver2.001'
         ),
         _react2.default.createElement(
           'h4',
