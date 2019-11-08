@@ -12,5 +12,5 @@ hello.py
 source.tgz
 
 node_modules
-source/react/public/bundle.js
-source/react/public/bundle.css
+# source/react/public/bundle.js
+# source/react/public/bundle.css

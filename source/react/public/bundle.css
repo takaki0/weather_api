@@ -1,0 +1,58 @@
+body {
+  background-color: #eee;
+  color: #444; }
+
+.app {
+  width: 1200px;
+  margin: 0 auto; }
+
+.result {
+  display: block; }
+
+.search-form {
+  text-align: center;
+  margin-bottom: 25px; }
+
+.place-input {
+  font-size: 22px;
+  width: 200px;
+  padding: 3px 3px 3px; }
+
+.date-input {
+  font-size: 22px;
+  width: 150px;
+  padding: 3px 3px 3px; }
+
+.submit-button {
+  -webkit-appearance: none;
+  font-size: 22px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px; }
+
+.conditions-table {
+  width: 600px;
+  margin: 1px auto;
+  text-align: center;
+  font-size: 16px; }
+
+.map {
+  height: 450px;
+  width: 1200px; }
+
+#loading {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #cef;
+  opacity: 0.7; }
+
+#loading .loadingMsg {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 140px;
+  background: url("/loading.gif") center center no-repeat; }
