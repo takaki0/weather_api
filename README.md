@@ -47,7 +47,7 @@ http://ec2-3-112-72-227.ap-northeast-1.compute.amazonaws.com/
     - GitHub
     - AWS
         - EC2
-        - Code deploy
+        - Code Pipeline, Code deploy
     - GCP
         - Geocoding API
         - Maps JavaScript API
