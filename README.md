@@ -35,8 +35,10 @@ http://ec2-3-112-72-227.ap-northeast-1.compute.amazonaws.com/
     - Python 3.7 / Flask 1.1
     - Golang (予定)
     - Kotlin (予定)
+    - php7.3 / Laravel 6 (予定)
   - フロント
-  - React 15.6
+    - React 15.6
+    - Vue 2.6 (予定)
 - 開発環境
     - Docker for Mac
     - Pycharm, WebStorm
@@ -57,4 +59,5 @@ http://ec2-3-112-72-227.ap-northeast-1.compute.amazonaws.com/
     - pytest
 
 ## 今後の課題
-・（未定）
+・学習モデルによる予測値導出機能の追加（予定）
+・ブロックチェーンによるポイント付与機能の追加（予定）
