@@ -5,7 +5,7 @@
       <InputForm></InputForm>
 <!--      <InputForm @search-click="get_condition"></InputForm>-->
     </div>
-    <p>※GoogleMap表示はまだ調整中。</p>
+    <p class="on_making">※GoogleMap表示はまだ調整中。</p>
     <GoogleMap></GoogleMap>
     <Conditions></Conditions>
   </div>
@@ -50,6 +50,13 @@ export default {
     padding-left: 20px;
     padding-right: 20px;
     text-align: left;
+  }
+
+  .on_making {
+    font-size: 24px;
+    color: blue;
+    font-weight: bold;
+    text-align:center;
   }
 </style>
 
