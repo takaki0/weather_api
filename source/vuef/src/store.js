@@ -7,9 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     input_form: {
-      city_name: '東京',
-      from_date: '2019-12-01',
-      to_date: '2019-12-31',
+      city_name: '大阪',
+      from_date: '2019-11-21',
+      to_date: '2019-11-25',
     },
     location: { //初期表示：東京
       lat: 35.6585805,
@@ -47,10 +47,11 @@ export default new Vuex.Store({
     set_input_form({ commit }, form_values){
       commit('set_input_form', form_values);
 
-      //python's API
-      const WEATHER_API_ENDPOINT = '/weather/get_condition_by_city/dc5c49bc74131f57699d93c3e961d86a';
+      //call python API
+      const WEATHER_API_ENDPOINT = 'weather/get_condition_by_city/dc5c49bc74131f57699d93c3e961d86a';
 
-      Axios.get(WEATHER_API_ENDPOINT, { params: form_values })
+      Axios
+        .get(WEATHER_API_ENDPOINT, { params: form_values })
         .then((result) => {
           const status = result.data.status;
           const message = result.data.message;
