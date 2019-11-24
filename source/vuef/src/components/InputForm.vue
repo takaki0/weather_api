@@ -30,9 +30,9 @@
     data() {
         return {
           form_data: {
-            city_name: '東京',
-            from_date: '2019-12-01',
-            to_date: '2019-12-07',
+            city_name: '大阪',
+            from_date: '2019-11-21',
+            to_date: '2019-11-25',
           },
         }
     },
