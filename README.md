@@ -12,7 +12,8 @@ https://darksky.net/dev
 ※本当は株価APIから情報を取得、同業界どうしの企業比較、各種指標を選択してグラフ化、機械学習による株価予測、などを実装したかったのですが、無料で使える株価APIがあまりなくいったん断念して代わりに気象情報を使うことにしました。
 
 ## サイトURL
-http://ec2-3-112-72-227.ap-northeast-1.compute.amazonaws.com/
+React版：http://ec2-52-194-255-22.ap-northeast-1.compute.amazonaws.com/
+Vue版：http://ec2-52-194-255-22.ap-northeast-1.compute.amazonaws.com:8000/
 
 ## 主な機能
 
@@ -35,10 +36,9 @@ http://ec2-3-112-72-227.ap-northeast-1.compute.amazonaws.com/
     - Python 3.7 / Flask 1.1
     - Golang (予定)
     - Kotlin (予定)
-    - php7.3 / Laravel 6 (予定)
   - フロント
     - React 15.6
-    - Vue 2.6 (予定)
+    - Vue 2.6
 - 開発環境
     - Docker for Mac
     - Pycharm, WebStorm
