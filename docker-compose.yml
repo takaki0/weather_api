@@ -1,11 +1,21 @@
 version: '3'
 services:
   nginx:
-    image: nginx:1.15
+#    image: nginx:1.15
+    build: ./nginx
     ports:
       - 80:80
     volumes:
       - ./source/react/public:/usr/src
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+  nginx_vue:
+#    image: nginx:1.15
+    build: ./nginx_vue
+    ports:
+      - 8000:80
+    volumes:
+      - ./source/vuef/dist:/usr/src
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
   python3:

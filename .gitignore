@@ -12,5 +12,7 @@ hello.py
 source.tgz
 
 node_modules
+
+source/slim/*
 # source/react/public/bundle.js
 # source/react/public/bundle.css
