@@ -12,8 +12,8 @@ https://darksky.net/dev
 ※本当は株価APIから情報を取得、同業界どうしの企業比較、各種指標を選択してグラフ化、機械学習による株価予測、などを実装したかったのですが、無料で使える株価APIがあまりなくいったん断念して代わりに気象情報を使うことにしました。
 
 ## サイトURL
-React版：http://ec2-52-194-255-22.ap-northeast-1.compute.amazonaws.com/
-Vue版：http://ec2-52-194-255-22.ap-northeast-1.compute.amazonaws.com:8000/
+- React版：http://ec2-52-194-255-22.ap-northeast-1.compute.amazonaws.com/
+- Vue版：http://ec2-52-194-255-22.ap-northeast-1.compute.amazonaws.com:8000/
 
 ## 主な機能
 
