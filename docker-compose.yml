@@ -34,9 +34,9 @@ services:
       - 5001:5001
     volumes:
       # for local
-      - /Users/takaki/go/src/go_weather:/go/src/go_weather
-      # for aws
 #      - /Users/takaki/go/src/go_weather:/go/src/go_weather
+      # for aws
+      - /home/ec2-user/go_app:/go/src/go_weather
     tty: true
     privileged: true
     working_dir: /go
