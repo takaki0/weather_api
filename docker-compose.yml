@@ -28,6 +28,20 @@ services:
     privileged: true
     working_dir: /var/www/html/application
 
+  go_server:
+    build: ./go_server
+    ports:
+      - 5001:5001
+    volumes:
+      # for local
+      - /Users/takaki/go/src/go_weather:/go/src/go_weather
+      # for aws
+#      - /Users/takaki/go/src/go_weather:/go/src/go_weather
+    tty: true
+    privileged: true
+    working_dir: /go
+    command: sh setup.sh
+
   mysql:
       image: mysql:8.0
       environment:
